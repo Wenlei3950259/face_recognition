@@ -1,0 +1,25 @@
+# 人脸识别模型配置
+face_model:
+  det_size: [640, 640]  # 检测尺寸
+  threshold: 0.5        # 相似度阈值（超过此值视为匹配）
+  providers: ["CPUExecutionProvider"]  # 优先CPU（服务器部署）
+  thread_pool_workers: 4  # 异步处理线程池大小
+  # 模型会自动从ModelScope下载，无需手动指定路径 , 可以下载mod手动安装
+  #windows : C:\Users\(用户名)\.insightface\models
+  #linux : /root/.insightface/models
+
+# API服务配置
+server:
+  host: "0.0.0.0"       # 允许外部访问
+  port: 5000            # 服务端口
+  debug: false          # 生产环境关闭调试模式
+  timeout: 30           # 接口超时时间（秒）
+  workers: 1            # uvicorn worker数量（建议1，模型全局单例）
+  max_connections: 100  # 最大并发连接数
+
+# 日志配置
+log:
+  level: "INFO"         # 日志级别（DEBUG/INFO/WARNING/ERROR）
+  file: "log/face_recognition.log"  # 日志文件路径
+  max_bytes: 10485760   # 单个日志文件大小（10MB）
+  backup_count: 5       # 日志备份数量

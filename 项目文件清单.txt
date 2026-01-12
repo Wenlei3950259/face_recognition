@@ -1,0 +1,178 @@
+﻿===============================================
+人脸识别医疗系统 - 项目文件清单
+===============================================
+
+【核心文档】
+├── README.md                      # 项目总览和快速开始（必读）
+├── 文档索引.md                     # 文档导航和快速查找
+├── 异步改造说明.md                 # 技术改造详细说明
+├── 项目改造总结.md                 # 改造总结和优化建议
+└── 项目文件清单.txt                # 本文件
+
+【Windows 相关】
+├── start_server_win.bat           # Windows 启动脚本
+└── 部署启动指南_win.md             # Windows 完整部署文档
+
+【Ubuntu 相关】
+├── start_server_ubuntu.sh         # Ubuntu 启动脚本
+├── quick_start_ubuntu.sh          # 快速启动脚本
+├── deploy_ubuntu.sh               # 自动部署脚本
+├── manage_service.sh              # 服务管理脚本（启动/停止/重启/状态）
+├── face-api.service               # systemd 服务文件
+└── 部署启动指南_ubuntu.md          # Ubuntu 完整部署文档
+
+【通用脚本】
+├── start_server.py                # 主启动脚本（支持前台/后台）
+├── start_daemon.py                # 后台启动脚本（Ubuntu）
+├── stop_server.py                 # 停止服务脚本（Ubuntu）
+└── test_async_api.py              # API 测试脚本
+
+【配置文件】
+├── requirements.txt               # Python 依赖包
+├── models说明.txt                 # 模型文件说明
+└── config/
+    ├── config.yaml                # 主配置文件
+    └── __init__.py                # 配置管理器
+
+【源代码】
+├── api/
+│   └── face_recognition_api.py        # FastAPI 主应用
+├── core/
+│   └── face_core.py               # 核心算法（编解码、相似度）
+└── face_process/
+    └── init_InsightFace.py        # 模型初始化
+
+【日志目录】
+└── log/
+    └── face_recognition.log           # 应用日志
+
+【其他】
+└── LICENSE                        # 许可证文件
+
+===============================================
+文件用途说明
+===============================================
+
+【必读文档】
+1. README.md - 从这里开始！
+2. 根据系统选择对应的部署文档
+
+【Windows 用户】
+1. 阅读：部署启动指南_win.md
+2. 启动：双击 start_server_win.bat
+3. 测试：python test_async_api.py
+
+【Ubuntu 用户】
+1. 阅读：部署启动指南_ubuntu.md
+2. 启动：bash quick_start_ubuntu.sh
+3. 管理：bash manage_service.sh [start|stop|restart|status]
+4. 测试：python test_async_api.py
+
+===============================================
+快速命令
+===============================================
+
+【Windows】
+启动: start_server_win.bat
+停止: Ctrl+C
+测试: curl http://localhost:5000/health
+
+【Ubuntu - 前台运行】
+启动: python start_server.py
+停止: Ctrl+C
+测试: curl http://localhost:5000/health
+
+【Ubuntu - 后台运行】
+启动: python start_daemon.py
+停止: python stop_server.py
+状态: bash manage_service.sh status
+测试: curl http://localhost:5000/health
+
+【Ubuntu - systemd 服务】
+启动: sudo systemctl start face-api
+停止: sudo systemctl stop face-api
+重启: sudo systemctl restart face-api
+状态: sudo systemctl status face-api
+开机自启: sudo systemctl enable face-api
+
+===============================================
+文档分类
+===============================================
+
+【入门级】
+- README.md
+- 文档索引.md
+- 部署启动指南_win.md（Windows）
+- 部署启动指南_ubuntu.md（Ubuntu）
+
+【进阶级】
+- 异步改造说明.md
+- 项目改造总结.md
+- config/config.yaml
+
+【开发级】
+- api/face_recognition_api.py
+- core/face_core.py
+- face_process/init_InsightFace.py
+- test_async_api.py
+
+===============================================
+文件大小参考
+===============================================
+
+文档类（.md, .txt）: 约 50KB
+脚本类（.py, .sh, .bat）: 约 5-10KB
+配置类（.yaml, .service）: 约 1-2KB
+源代码（.py）: 约 10-20KB
+
+总计：约 200KB（不含日志和模型）
+
+===============================================
+模型文件位置
+===============================================
+
+Windows: C:\Users\<用户名>\.insightface\models\buffalo_l\
+Ubuntu:  /root/.insightface\models/buffalo_l/
+
+模型文件大小：约 500MB
+首次启动会自动下载
+
+===============================================
+日志文件位置
+===============================================
+
+应用日志: log/face_recognition.log
+服务日志: server.log（使用 nohup 时）
+系统日志: journalctl -u face-api（使用 systemd 时）
+
+===============================================
+端口使用
+===============================================
+
+默认端口: 5000
+API 文档: http://localhost:5000/docs
+健康检查: http://localhost:5000/health
+
+修改端口: 编辑 config/config.yaml 中的 server.port
+
+===============================================
+推荐阅读顺序
+===============================================
+
+【新手】
+1. README.md
+2. 部署启动指南_win.md 或 部署启动指南_ubuntu.md
+3. 文档索引.md（需要时查阅）
+
+【开发者】
+1. README.md
+2. 异步改造说明.md
+3. 项目改造总结.md
+4. 源代码文件
+
+【运维人员】
+1. README.md
+2. 部署启动指南_ubuntu.md
+3. manage_service.sh 和 face-api.service
+
+===============================================

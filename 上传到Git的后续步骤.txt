@@ -1,0 +1,86 @@
+========================================
+Git 上传后续步骤
+========================================
+
+✅ 已完成：
+1. 初始化 Git 仓库 (git init)
+2. 添加 .gitignore 文件
+3. 添加所有文件到暂存区 (git add .)
+4. 提交到本地仓库 (git commit)
+
+📋 接下来需要做：
+
+步骤 1: 在 GitHub/GitLab/Gitee 创建远程仓库
+---------------------------------------
+1. 登录你的 Git 平台（GitHub/GitLab/Gitee）
+2. 点击 "New Repository" 或 "新建仓库"
+3. 填写仓库名称，例如: face_recognition
+4. 选择 Public（公开）或 Private（私有）
+5. 不要勾选 "Initialize with README"（我们已经有了）
+6. 点击创建
+
+步骤 2: 关联远程仓库
+---------------------------------------
+复制你创建的仓库地址，然后执行：
+
+# GitHub 示例
+git remote add origin https://github.com/你的用户名/face_recognition.git
+
+# Gitee 示例  
+git remote add origin https://gitee.com/你的用户名/face_recognition.git
+
+# GitLab 示例
+git remote add origin https://gitlab.com/你的用户名/face_recognition.git
+
+步骤 3: 推送到远程仓库
+---------------------------------------
+git branch -M main
+git push -u origin main
+
+如果推送失败，可能需要配置 Git 用户信息：
+git config --global user.name "你的名字"
+git config --global user.email "你的邮箱"
+
+========================================
+快速命令（复制使用）
+========================================
+
+# 1. 关联远程仓库（替换为你的仓库地址）
+git remote add origin https://github.com/你的用户名/face_recognition.git
+
+# 2. 推送到远程
+git branch -M main
+git push -u origin main
+
+========================================
+验证上传成功
+========================================
+
+1. 刷新你的 Git 仓库页面
+2. 应该能看到所有文件已上传
+3. README.md 会自动显示在仓库首页
+
+========================================
+后续更新代码
+========================================
+
+当你修改代码后，使用以下命令更新：
+
+git add .
+git commit -m "描述你的修改"
+git push
+
+========================================
+注意事项
+========================================
+
+1. 日志文件和模型文件不会上传（已在 .gitignore 中排除）
+2. .idea 目录不会上传
+3. 如果仓库中有敏感信息，请设置为私有仓库
+4. 首次推送可能需要输入 Git 账号密码或配置 SSH 密钥
+
+========================================
+需要帮助？
+========================================
+
+详细说明请查看: Git上传指南.md
